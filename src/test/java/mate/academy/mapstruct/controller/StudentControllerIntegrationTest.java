@@ -40,14 +40,14 @@ class StudentControllerIntegrationTest {
                 .andExpect(jsonPath("$[0].id").value(2))
                 .andExpect(jsonPath("$[0].name").value("John Doe"))
                 .andExpect(jsonPath("$[0].email").value("john.doe@example.com"))
-                .andExpect(jsonPath("$[0].groupId").value(1))
+                .andExpect(jsonPath("$[0].groupId").value(2))
                 .andExpect(jsonPath("$[0].subjectIds").doesNotExist())
 
                 // Check the second employee in the list
                 .andExpect(jsonPath("$[1].id").value(3))
                 .andExpect(jsonPath("$[1].name").value("Jane Doe"))
                 .andExpect(jsonPath("$[1].email").value("jane.doe@example.com"))
-                .andExpect(jsonPath("$[1].groupId").value(2))
+                .andExpect(jsonPath("$[1].groupId").value(3))
                 .andExpect(jsonPath("$[1].subjectIds").doesNotExist());
     }
 
@@ -62,15 +62,15 @@ class StudentControllerIntegrationTest {
                 .andExpect(jsonPath("$.id").value(employeeId))
                 .andExpect(jsonPath("$.name").value("John Doe"))
                 .andExpect(jsonPath("$.email").value("john.doe@example.com"))
-                .andExpect(jsonPath("$.groupId").value(1L))
-                .andExpect(jsonPath("$.subjectIds", containsInAnyOrder(1, 2)));
+                .andExpect(jsonPath("$.groupId").value(2L))
+                .andExpect(jsonPath("$.subjectIds", containsInAnyOrder(2, 3)));
     }
 
     @Test
     void testSave() throws Exception {
         // Define the request DTO here
         CreateStudentRequestDto requestDto = new CreateStudentRequestDto(
-                "Bob Alison", "bob.alison@example.com", 1L, List.of(1L, 2L)
+                "Bob Alison", "bob.alison@example.com", 2L, List.of(2L, 3L)
         );
         String requestBody = objectMapper.writeValueAsString(requestDto);
 
@@ -82,7 +82,7 @@ class StudentControllerIntegrationTest {
                 .andExpect(jsonPath("$.id").exists())
                 .andExpect(jsonPath("$.name").value("Bob Alison"))
                 .andExpect(jsonPath("$.email").value("bob.alison@example.com"))
-                .andExpect(jsonPath("$.groupId").value(1L))
-                .andExpect(jsonPath("$.subjectIds").exists());
+                .andExpect(jsonPath("$.groupId").value(2L))
+                .andExpect(jsonPath("$.subjectIds", containsInAnyOrder(2, 3)));
     }
 }

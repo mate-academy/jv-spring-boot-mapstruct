@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@Sql(scripts = "classpath:clean-up-data.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 public class GroupControllerIntegrationTest {
 
     @Autowired
@@ -28,16 +29,15 @@ public class GroupControllerIntegrationTest {
 
     @Test
     @Sql(scripts = "classpath:setup-data.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-    @Sql(scripts = "classpath:clean-up-data.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void testFindAll() throws Exception {
         mockMvc.perform(get("/groups"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$").isArray())
                 .andExpect(jsonPath("$").isNotEmpty())
-                .andExpect(jsonPath("$[0].id").value(1))
+                .andExpect(jsonPath("$[0].id").value(2))
                 .andExpect(jsonPath("$[0].name").value("HR"))
-                .andExpect(jsonPath("$[1].id").value(2))
+                .andExpect(jsonPath("$[1].id").value(3))
                 .andExpect(jsonPath("$[1].name").value("Engineering"));
     }
 

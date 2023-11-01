@@ -17,6 +17,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@Sql(scripts = "classpath:setup-data.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+@Sql(scripts = "classpath:clean-up-data.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 class SubjectControllerIntegrationTest {
 
     @Autowired
@@ -26,15 +28,13 @@ class SubjectControllerIntegrationTest {
     private ObjectMapper objectMapper;
 
     @Test
-    @Sql(scripts = "classpath:setup-data.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-    @Sql(scripts = "classpath:clean-up-data.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     void testFindAll() throws Exception {
         mockMvc.perform(get("/subjects"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$[0].id").value(1))
+                .andExpect(jsonPath("$[0].id").value(2))
                 .andExpect(jsonPath("$[0].name").value("Java"))
-                .andExpect(jsonPath("$[1].id").value(2))
+                .andExpect(jsonPath("$[1].id").value(3))
                 .andExpect(jsonPath("$[1].name").value("Spring Boot"));
     }
 
