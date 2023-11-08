@@ -10,6 +10,5 @@ public interface StudentMapper {
 
     StudentWithoutSubjectsDto toEmployeeWithoutSubjectsDto(Student student);
 
-
     Student toModel(CreateStudentRequestDto requestDto);
 }
