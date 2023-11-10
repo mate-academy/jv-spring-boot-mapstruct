@@ -20,4 +20,9 @@ public interface GroupMapper {
                 .map(Group::new)
                 .orElse(null);
     }
+
+    @Named("idByGroup")
+    default Long idByGroup(Group group) {
+        return group.getId();
+    }
 }
