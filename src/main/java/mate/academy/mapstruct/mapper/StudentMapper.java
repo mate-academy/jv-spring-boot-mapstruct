@@ -14,6 +14,7 @@ import org.mapstruct.MappingTarget;
 @Mapper(config = MapperConfig.class, uses = GroupMapper.class)
 public interface StudentMapper {
     @Mapping(source = "group.id", target = "groupId")
+    @Mapping(target = "subjectIds", ignore = true)
     StudentDto toDto(Student student);
 
     @AfterMapping
@@ -30,6 +31,9 @@ public interface StudentMapper {
     StudentWithoutSubjectsDto toEmployeeWithoutSubjectsDto(Student student);
 
     @Mapping(target = "group", source = "groupId", qualifiedByName = "groupById")
+    @Mapping(target = "socialSecurityNumber", ignore = true)
+    @Mapping(target = "subjects", ignore = true)
+    @Mapping(target = "id", ignore = true)
     Student toModel(CreateStudentRequestDto requestDto);
 
     @AfterMapping
