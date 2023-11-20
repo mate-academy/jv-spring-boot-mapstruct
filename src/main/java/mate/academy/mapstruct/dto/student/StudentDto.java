@@ -9,5 +9,5 @@ public class StudentDto {
     private String name;
     private String email;
     private Long groupId;
-    private List<Long> subjects;
+    private List<Long> subjectIds;
 }

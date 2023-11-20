@@ -14,7 +14,7 @@ import org.mapstruct.Mapping;
 public interface StudentMapper {
 
     @Mapping(target = "groupId", source = "group.id")
-    @Mapping(target = "subjects", source = "subjects")
+    @Mapping(target = "subjectIds", source = "subjects")
     StudentDto toDto(Student student);
 
     default List<Long> mapSubjects(List<Subject> subjects) {
@@ -26,7 +26,7 @@ public interface StudentMapper {
     StudentWithoutSubjectsDto toEmployeeWithoutSubjectsDto(Student student);
 
     @Mapping(target = "group.id", source = "requestDto.groupId")
-    @Mapping(target = "subjects", source = "requestDto.subjects")
+    @Mapping(target = "subjects", source = "requestDto.subjectIds")
     Student toModel(CreateStudentRequestDto requestDto);
 
     default List<Subject> mapLongs(List<Long> longs) {
