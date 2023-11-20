@@ -1,7 +1,6 @@
 package mate.academy.mapstruct.mapper;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import mate.academy.mapstruct.dto.student.CreateStudentRequestDto;
 import mate.academy.mapstruct.dto.student.StudentDto;
 import mate.academy.mapstruct.dto.student.StudentWithoutSubjectsDto;
@@ -20,7 +19,7 @@ public interface StudentMapper {
     default List<Long> mapSubjects(List<Subject> subjects) {
         return subjects.stream()
                 .map(Subject::getId)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     StudentWithoutSubjectsDto toEmployeeWithoutSubjectsDto(Student student);
@@ -34,5 +33,4 @@ public interface StudentMapper {
                 .map(Subject::new)
                 .toList();
     }
-
 }
