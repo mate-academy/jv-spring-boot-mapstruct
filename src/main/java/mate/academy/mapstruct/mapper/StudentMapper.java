@@ -22,6 +22,7 @@ public interface StudentMapper {
                 .toList();
     }
 
+    @Mapping(target = "groupId", source = "group.id")
     StudentWithoutSubjectsDto toEmployeeWithoutSubjectsDto(Student student);
 
     @Mapping(target = "group.id", source = "requestDto.groupId")
