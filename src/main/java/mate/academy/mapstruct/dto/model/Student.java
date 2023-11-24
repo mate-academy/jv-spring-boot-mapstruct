@@ -1,4 +1,4 @@
-package mate.academy.mapstruct.model;
+package mate.academy.mapstruct.dto.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,4 +1,4 @@
-package mate.academy.mapstruct.model;
+package mate.academy.mapstruct.dto.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,14 +11,14 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "student_groups")
-public class Group {
+@Table(name = "subjects")
+public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
-    public Group(Long id) {
+    public Subject(Long id) {
         this.id = id;
     }
 }
