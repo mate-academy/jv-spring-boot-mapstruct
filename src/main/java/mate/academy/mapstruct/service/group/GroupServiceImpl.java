@@ -4,8 +4,8 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.academy.mapstruct.dto.group.CreateGroupRequestDto;
 import mate.academy.mapstruct.dto.group.GroupDto;
+import mate.academy.mapstruct.dto.model.Group;
 import mate.academy.mapstruct.mapper.GroupMapper;
-import mate.academy.mapstruct.model.Group;
 import mate.academy.mapstruct.repository.group.GroupRepository;
 import org.springframework.stereotype.Service;
 

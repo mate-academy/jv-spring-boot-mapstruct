@@ -2,7 +2,7 @@ package mate.academy.mapstruct.repository.student;
 
 import java.util.List;
 import java.util.Optional;
-import mate.academy.mapstruct.model.Student;
+import mate.academy.mapstruct.dto.model.Student;
 
 public interface StudentRepository {
     Student save(Student student);

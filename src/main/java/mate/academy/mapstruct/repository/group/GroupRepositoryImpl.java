@@ -5,7 +5,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import mate.academy.mapstruct.model.Group;
+import mate.academy.mapstruct.dto.model.Group;
 import org.springframework.stereotype.Repository;
 
 @RequiredArgsConstructor

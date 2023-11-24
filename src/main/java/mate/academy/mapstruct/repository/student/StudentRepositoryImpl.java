@@ -8,7 +8,7 @@ import jakarta.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
-import mate.academy.mapstruct.model.Student;
+import mate.academy.mapstruct.dto.model.Student;
 import org.springframework.stereotype.Repository;
 
 @RequiredArgsConstructor
@@ -53,7 +53,9 @@ public class StudentRepositoryImpl implements StudentRepository {
     @Override
     public List<Student> findAll() {
         try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
-            return entityManager.createQuery("SELECT s FROM Student s", Student.class)
+            return entityManager.createQuery(
+                    "SELECT s FROM Student s",
+                            Student.class)
                     .getResultList();
         }
     }
