@@ -25,7 +25,8 @@ public interface StudentMapper {
     Student toModel(CreateStudentRequestDto requestDto);
 
     @AfterMapping
-    default void setSubjectsToStudent(@MappingTarget Student student, CreateStudentRequestDto requestDto) {
+    default void setSubjectsToStudent(@MappingTarget Student student,
+                                      CreateStudentRequestDto requestDto) {
         List<Subject> subjects = requestDto.subjects().stream()
                 .map(Subject::new)
                 .toList();
