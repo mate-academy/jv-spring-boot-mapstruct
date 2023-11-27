@@ -1,7 +1,9 @@
 package mate.academy.mapstruct.service.student;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import mate.academy.mapstruct.dto.student.CreateStudentRequestDto;
 import mate.academy.mapstruct.dto.student.StudentDto;
@@ -9,12 +11,15 @@ import mate.academy.mapstruct.dto.student.StudentWithoutSubjectsDto;
 import mate.academy.mapstruct.exception.EntityNotFoundException;
 import mate.academy.mapstruct.mapper.StudentMapper;
 import mate.academy.mapstruct.model.Student;
+import mate.academy.mapstruct.model.Subject;
 import mate.academy.mapstruct.repository.student.StudentRepository;
+import mate.academy.mapstruct.repository.subject.SubjectRepository;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
 public class StudentServiceImpl implements StudentService {
+    private final SubjectRepository subjectRepository;
     private final StudentRepository studentRepository;
     private final StudentMapper studentMapper;
 
