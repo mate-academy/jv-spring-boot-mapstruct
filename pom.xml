@@ -99,11 +99,12 @@
                 <configuration>
                     <configLocation>${maven.checkstyle.plugin.configLocation}</configLocation>
                     <includeResources>false</includeResources>
-                    <excludeGeneratedSources>true</excludeGeneratedSources>
                     <consoleOutput>true</consoleOutput>
                     <failsOnError>true</failsOnError>
                     <linkXRef>false</linkXRef>
-                    <sourceDirectories>src</sourceDirectories>
+                    <sourceDirectories>
+                        <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
+                    </sourceDirectories>
                 </configuration>
             </plugin>
             <plugin>
