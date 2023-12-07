@@ -18,19 +18,19 @@ public interface StudentMapper {
     @Mapping(source = "group.id", target = "groupId")
     StudentDto toDto(Student student);
 
-    @Mapping(source = "group.id", target = "groupId")
-    StudentWithoutSubjectsDto toStudentWithoutSubjectsDto(Student student);
-
     @AfterMapping
-    default void setSubjectIds(@MappingTarget StudentDto studentDto, Student student) {
+    default void setStudentIds(@MappingTarget StudentDto studentDto, Student student) {
         List<Long> subjectIds = student.getSubjects().stream()
                 .map(Subject::getId)
                 .toList();
         studentDto.setSubjectIds(subjectIds);
     }
 
+    @Mapping(source = "group.id", target = "groupId")
+    StudentWithoutSubjectsDto toStudentWithoutSubjectsDto(Student student);
+
     @Mapping(target = "subjects", ignore = true)
-    @Mapping(source = "groupId", target = "group", qualifiedByName = "getGroupById")
+    @Mapping(target = "group", source = "groupId", qualifiedByName = "groupById")
     Student toModel(CreateStudentRequestDto requestDto);
 
     @AfterMapping

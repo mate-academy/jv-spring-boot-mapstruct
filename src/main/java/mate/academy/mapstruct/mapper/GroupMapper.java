@@ -14,7 +14,7 @@ public interface GroupMapper {
 
     Group toModel(CreateGroupRequestDto requestDto);
 
-    @Named(value = "groupById")
+    @Named("groupById")
     default Group groupById(Long id) {
         return Optional.ofNullable(id)
                 .map(Group::new)
