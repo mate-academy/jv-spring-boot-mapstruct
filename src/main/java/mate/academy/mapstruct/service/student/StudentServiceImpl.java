@@ -28,14 +28,14 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<StudentWithoutSubjectsDto> findAll() {
         return studentRepository.findAll().stream()
-                .map(studentMapper::toEmployeeWithoutSubjectsDto)
+                .map(studentMapper::toStudentWithoutSubjectsDto)
                 .toList();
     }
 
     @Override
     public StudentDto findById(Long id) {
         Student student = studentRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("Can't find employee by id" + id)
+                () -> new EntityNotFoundException("Can't find student by id" + id)
         );
         return studentMapper.toDto(student);
     }
