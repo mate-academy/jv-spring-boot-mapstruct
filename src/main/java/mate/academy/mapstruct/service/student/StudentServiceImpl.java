@@ -28,7 +28,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<StudentWithoutSubjectsDto> findAll() {
         return studentRepository.findAll().stream()
-                .map(studentMapper::toEmployeeWithoutSubjectsDto)
+                .map(studentMapper::toStudentWithoutSubjectsDto)
                 .toList();
     }
 

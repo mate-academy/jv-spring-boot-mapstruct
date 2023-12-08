@@ -8,7 +8,7 @@ import mate.academy.mapstruct.model.Student;
 public interface StudentMapper {
     StudentDto toDto(Student student);
 
-    StudentWithoutSubjectsDto toEmployeeWithoutSubjectsDto(Student student);
+    StudentWithoutSubjectsDto toStudentWithoutSubjectsDto(Student student);
 
 
     Student toModel(CreateStudentRequestDto requestDto);
