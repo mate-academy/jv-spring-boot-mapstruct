@@ -4,6 +4,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+### To avoid committing users' DB credentials ###
 src/main/resources/application.properties
 
 ### STS ###
