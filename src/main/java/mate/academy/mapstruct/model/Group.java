@@ -21,4 +21,8 @@ public class Group {
     public Group(Long id) {
         this.id = id;
     }
+
+    public Long getId(Group group) {
+        return group.getId();
+    }
 }
