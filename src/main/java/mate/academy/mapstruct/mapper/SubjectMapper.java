@@ -1,11 +1,30 @@
 package mate.academy.mapstruct.mapper;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import mate.academy.mapstruct.dto.subject.CreateSubjectRequestDto;
 import mate.academy.mapstruct.dto.subject.SubjectDto;
 import mate.academy.mapstruct.model.Subject;
+import org.mapstruct.Mapper;
+import org.mapstruct.Named;
 
+@Mapper(componentModel = "spring")
 public interface SubjectMapper {
     SubjectDto toDto(Subject subject);
 
     Subject toModel(CreateSubjectRequestDto requestDto);
+
+    @Named("getSubjects")
+    default List<Subject> getSubjects(List<Long> ids) {
+        return ids.stream()
+                .map(Subject::new)
+                .collect(Collectors.toList());
+    }
+
+    @Named("getSubjectsIds")
+    default List<Long> getSubjectsIds(List<Subject> subjects) {
+        return subjects.stream()
+                .map(Subject::getId)
+                .toList();
+    }
 }
