@@ -16,7 +16,7 @@ import org.mapstruct.Named;
 import java.util.List;
 import java.util.Optional;
 
-@Mapper(componentModel = "string", uses = {GroupMapper.class, SubjectMapper.class})
+@Mapper(componentModel = "spring", uses = {GroupMapper.class, SubjectMapper.class})
 public interface StudentMapper {
     @Mappings({
             @Mapping(source = "group.id", target = "groupId"),
@@ -26,11 +26,15 @@ public interface StudentMapper {
 
     @AfterMapping
     default void setSubjectIds(@MappingTarget StudentDto studentDto, Student student) {
-        List<Long> subjectIds = student.getSubjects().stream().map(Subject::getId).toList();
+        List<Long> subjectIds = student.getSubjects()
+                .stream()
+                .map(Subject::getId)
+                .toList();
         studentDto.setSubjectIds(subjectIds);
     }
-
+    @Mapping(target = "groupId", source = "group.id")
     StudentWithoutSubjectsDto toStudentWithoutSubjectsDto(Student student);
+
 
     @Mappings({
             @Mapping(target = "group", source = "groupId", qualifiedByName = "groupById"),
@@ -39,9 +43,13 @@ public interface StudentMapper {
     })
     Student toModel(CreateStudentRequestDto requestDto);
 
+
     @AfterMapping
     default void setSubjects(@MappingTarget Student student, CreateStudentRequestDto createStudentRequestDto) {
-        List<Subject> subjects = createStudentRequestDto.subjects().stream().map(Subject::new).toList();
+        List<Subject> subjects = createStudentRequestDto.subjects()
+                .stream()
+                .map(Subject::new)
+                .toList();
         student.setSubjects(subjects);
     }
 
