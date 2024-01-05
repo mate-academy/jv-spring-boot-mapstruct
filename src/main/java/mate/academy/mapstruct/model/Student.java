@@ -15,8 +15,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-@Data
 @Entity
+@Data
 @Table(name = "students")
 public class Student {
     @Id
