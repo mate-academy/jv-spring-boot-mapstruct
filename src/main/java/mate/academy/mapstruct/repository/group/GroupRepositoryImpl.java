@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import mate.academy.mapstruct.model.Group;
 import org.springframework.stereotype.Repository;
@@ -27,6 +28,16 @@ public class GroupRepositoryImpl implements GroupRepository {
                 transaction.rollback();
             }
             throw e;
+        }
+    }
+
+    @Override
+    public Optional<Group> findById(Long id) {
+        try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
+            Group group = entityManager.find(Group.class, id);
+            return Optional.ofNullable(group);
+        } catch (Exception e) {
+            throw new RuntimeException("Cant find user where id: " + id, e);
         }
     }
 
