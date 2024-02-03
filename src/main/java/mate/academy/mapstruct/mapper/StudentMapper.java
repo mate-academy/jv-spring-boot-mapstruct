@@ -5,10 +5,9 @@ import mate.academy.mapstruct.dto.student.StudentDto;
 import mate.academy.mapstruct.dto.student.StudentWithoutSubjectsDto;
 import mate.academy.mapstruct.model.Student;
 import org.mapstruct.Mapper;
-import org.mapstruct.MapperConfig;
 import org.mapstruct.Mapping;
 
-@Mapper(config = MapperConfig.class, uses = {GroupMapper.class, SubjectMapper.class})
+@Mapper(componentModel = "spring", uses = {GroupMapper.class, SubjectMapper.class})
 public interface StudentMapper {
 
     @Mapping(target = "groupId", source = "group", qualifiedByName = "getGroupId")
