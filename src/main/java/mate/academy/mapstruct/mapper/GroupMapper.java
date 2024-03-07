@@ -9,6 +9,7 @@ import org.mapstruct.Named;
 
 @Mapper(config = MapperConfig.class)
 public interface GroupMapper {
+
     GroupDto toDto(Group group);
 
     Group toModel(CreateGroupRequestDto requestDto);

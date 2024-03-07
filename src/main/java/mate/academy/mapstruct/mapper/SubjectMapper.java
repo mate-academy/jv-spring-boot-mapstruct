@@ -7,6 +7,7 @@ import org.mapstruct.Mapper;
 
 @Mapper(config = MapperConfig.class)
 public interface SubjectMapper {
+
     SubjectDto toDto(Subject subject);
 
     Subject toModel(CreateSubjectRequestDto requestDto);

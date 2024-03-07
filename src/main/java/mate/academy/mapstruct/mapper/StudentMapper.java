@@ -13,6 +13,7 @@ import org.mapstruct.MappingTarget;
 
 @Mapper(config = MapperConfig.class, uses = GroupMapper.class)
 public interface StudentMapper {
+
     @Mapping(source = "group.id", target = "groupId")
     @Mapping(target = "subjectIds", ignore = true)
     StudentDto toDto(Student student);
