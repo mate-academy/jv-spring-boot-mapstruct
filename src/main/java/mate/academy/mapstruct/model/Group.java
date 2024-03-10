@@ -21,4 +21,7 @@ public class Group {
     public Group(Long id) {
         this.id = id;
     }
+
+    public Group(String s) {
+    }
 }

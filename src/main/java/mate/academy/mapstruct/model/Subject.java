@@ -21,4 +21,7 @@ public class Subject {
     public Subject(Long id) {
         this.id = id;
     }
+
+    public Subject(String s) {
+    }
 }
