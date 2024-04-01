@@ -12,7 +12,6 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
-
 @Mapper(config = MapperConfig.class, uses = GroupMapper.class)
 public interface StudentMapper {
 
