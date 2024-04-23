@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value = "/groups")
+    @RequestMapping(value = "/groups")
 public class GroupController {
 
     private final GroupService groupService;
