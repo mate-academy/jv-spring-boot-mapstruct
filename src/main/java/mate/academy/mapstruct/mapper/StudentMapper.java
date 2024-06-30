@@ -7,8 +7,10 @@ import mate.academy.mapstruct.dto.student.StudentDto;
 import mate.academy.mapstruct.dto.student.StudentWithoutSubjectsDto;
 import mate.academy.mapstruct.model.Student;
 import mate.academy.mapstruct.model.Subject;
-import mate.academy.mapstruct.repository.subject.SubjectRepository;
-import org.mapstruct.*;
+import org.mapstruct.AfterMapping;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring", uses = {GroupMapper.class, SubjectMapper.class})
 public interface StudentMapper {
