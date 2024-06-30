@@ -1,6 +1,7 @@
 package mate.academy.mapstruct.mapper;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import mate.academy.mapstruct.dto.student.CreateStudentRequestDto;
 import mate.academy.mapstruct.dto.student.StudentDto;
 import mate.academy.mapstruct.dto.student.StudentWithoutSubjectsDto;
@@ -11,7 +12,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
-@Mapper(componentModel = "spring", uses = GroupMapper.class)
+@Mapper(componentModel = "spring", uses = {GroupMapper.class, SubjectMapper.class})
 public interface StudentMapper {
     @Mapping(source = "group.id", target = "groupId")
     @Mapping(target = "subjectIds", ignore = true)
@@ -21,7 +22,7 @@ public interface StudentMapper {
     default void setSubjectIds(@MappingTarget StudentDto studentDto, Student student) {
         List<Long> subjectIds = student.getSubjects().stream()
                 .map(Subject::getId)
-                .toList();
+                .collect(Collectors.toList());
         studentDto.setSubjectIds(subjectIds);
     }
 
@@ -33,9 +34,11 @@ public interface StudentMapper {
 
     @AfterMapping
     default void setSubjects(@MappingTarget Student student, CreateStudentRequestDto requestDto) {
-        List<Subject> subjects = requestDto.subjects().stream()
-                .map(Subject::new)
-                .toList();
-        student.setSubjects(subjects);
+        if (requestDto.subjects() != null) {
+            List<Subject> subjects = requestDto.subjects().stream()
+                    .map(id -> new Subject(id))
+                    .collect(Collectors.toList());
+            student.setSubjects(subjects);
+        }
     }
 }
