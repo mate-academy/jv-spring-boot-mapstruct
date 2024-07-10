@@ -25,7 +25,6 @@ public interface StudentMapper {
         studentDto.setSubjectIds(subjectIds);
     }
 
-    @Mapping(target = "groupId", source = "group", qualifiedByName = "groupGetById")
     StudentWithoutSubjectsDto toStudentWithoutSubjectsDto(Student student);
 
     @Mapping(target = "group", source = "groupId", qualifiedByName = "groupGetById")
