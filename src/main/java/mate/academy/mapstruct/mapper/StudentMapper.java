@@ -1,7 +1,6 @@
 package mate.academy.mapstruct.mapper;
 
 import java.util.List;
-import mate.academy.mapstruct.config.MapperConfig;
 import mate.academy.mapstruct.dto.student.CreateStudentRequestDto;
 import mate.academy.mapstruct.dto.student.StudentDto;
 import mate.academy.mapstruct.dto.student.StudentWithoutSubjectsDto;
@@ -12,7 +11,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
-@Mapper(config = MapperConfig.class, uses = GroupMapper.class)
+@Mapper(componentModel = "spring", uses = GroupMapper.class)
 public interface StudentMapper {
     @Mapping(target = "subjectIds", ignore = true)
     @Mapping(source = "group.id", target = "groupId")
@@ -26,6 +25,7 @@ public interface StudentMapper {
         studentDto.setSubjectIds(subjectIds);
     }
 
+    @Mapping(target = "groupId", source = "group", qualifiedByName = "groupGetById")
     StudentWithoutSubjectsDto toStudentWithoutSubjectsDto(Student student);
 
     @Mapping(target = "group", source = "groupId", qualifiedByName = "groupGetById")
