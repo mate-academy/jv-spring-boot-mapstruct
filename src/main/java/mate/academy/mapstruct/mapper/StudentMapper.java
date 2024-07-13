@@ -20,7 +20,7 @@ public interface StudentMapper {
     StudentDto toDto(Student student);
 
     @AfterMapping
-    default void setSubjectsIds(@MappingTarget Student student, StudentDto studentDto) {
+    default void setSubjectsIds(@MappingTarget StudentDto studentDto, Student student) {
         List<Long> subjectIds = student.getSubjects().stream()
                 .map(Subject::getId)
                 .toList();
