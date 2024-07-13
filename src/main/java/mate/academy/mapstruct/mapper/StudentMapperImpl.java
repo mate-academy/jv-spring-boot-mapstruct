@@ -24,7 +24,7 @@ public class StudentMapperImpl implements StudentMapper {
         if (student.getGroup() != null) {
             studentDto.setGroupId(studentDto.getGroupId());
         }
-        setSubjectsIds(studentDto, student);
+        setSubjectsIds(student, studentDto);
         return studentDto;
     }
 
@@ -53,7 +53,7 @@ public class StudentMapperImpl implements StudentMapper {
         student.setName(requestDto.name());
         student.setId(requestDto.groupId());
         student.setGroup(groupMapper.groupById(requestDto.groupId()));
-        setSubjects(requestDto, student);
+        setSubjects(student, requestDto);
         return student;
     }
 }

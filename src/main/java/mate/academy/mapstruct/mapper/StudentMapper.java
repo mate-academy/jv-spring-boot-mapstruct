@@ -14,19 +14,20 @@ import org.mapstruct.MappingTarget;
 
 @Mapper(config = MapperConfig.class, uses = GroupMapper.class)
 public interface StudentMapper {
-    @Mapping(target = "subjectIds", ignore = true)
+
     @Mapping(source = "group.id", target = "groupId")
+    @Mapping(target = "subjectIds", ignore = true)
     StudentDto toDto(Student student);
 
     @AfterMapping
-    default void setSubjectsIds(@MappingTarget StudentDto studentDto, Student student) {
+    default void setSubjectsIds(@MappingTarget Student student, StudentDto studentDto) {
         List<Long> subjectIds = student.getSubjects().stream()
                 .map(Subject::getId)
                 .toList();
         studentDto.setSubjectIds(subjectIds);
     }
 
-
+    @Mapping(target = "groupId", source = "group.id")
     StudentWithoutSubjectsDto toStudentWithoutSubjectsDto(Student student);
 
     @Mapping(target = "group", source = "groupId", qualifiedByName = "groupById")
@@ -34,7 +35,7 @@ public interface StudentMapper {
     Student toModel(CreateStudentRequestDto requestDto);
 
     @AfterMapping
-    default void setSubjects(@MappingTarget CreateStudentRequestDto requestDto, Student student) {
+    default void setSubjects(@MappingTarget Student student, CreateStudentRequestDto requestDto) {
         List<Subject> subjects = requestDto.subjects().stream()
                 .map(Subject::new)
                 .toList();
