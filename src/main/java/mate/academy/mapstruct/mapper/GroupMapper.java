@@ -3,9 +3,22 @@ package mate.academy.mapstruct.mapper;
 import mate.academy.mapstruct.dto.group.CreateGroupRequestDto;
 import mate.academy.mapstruct.dto.group.GroupDto;
 import mate.academy.mapstruct.model.Group;
+import mate.academy.mapstruct.model.Subject;
+import org.mapstruct.Mapper;
+import org.mapstruct.Named;
 
+import java.util.Optional;
+
+@Mapper(componentModel = "spring")
 public interface GroupMapper {
     GroupDto toDto(Group group);
 
     Group toModel(CreateGroupRequestDto requestDto);
+
+    @Named("groupById")
+    default Group groupById(Long id) {
+        return Optional.ofNullable(id)
+                .map(Group::new)
+                .orElse(null);
+    }
 }
