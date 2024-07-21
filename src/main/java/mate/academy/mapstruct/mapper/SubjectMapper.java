@@ -1,13 +1,11 @@
 package mate.academy.mapstruct.mapper;
 
+import java.util.Optional;
 import mate.academy.mapstruct.dto.subject.CreateSubjectRequestDto;
 import mate.academy.mapstruct.dto.subject.SubjectDto;
 import mate.academy.mapstruct.model.Subject;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.Named;
-
-import java.util.Optional;
 
 @Mapper(componentModel = "spring")
 public interface SubjectMapper {
