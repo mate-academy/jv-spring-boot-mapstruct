@@ -34,7 +34,7 @@ public class SubjectRepositoryImpl implements SubjectRepository {
     public List<Subject> findAll() {
         try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
             return entityManager.createQuery("SELECT s FROM Subject s", Subject.class)
-                    .getResultList();
+                .getResultList();
         }
     }
 }
