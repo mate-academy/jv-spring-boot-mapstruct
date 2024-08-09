@@ -28,7 +28,8 @@ public class GroupControllerIntegrationTest {
     private ObjectMapper objectMapper;
 
     @Test
-    @Sql(scripts = "classpath:setup-data.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(scripts = "classpath:setup-data.sql",
+            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     public void testFindAll() throws Exception {
         mockMvc.perform(get("/groups"))
                 .andExpect(status().isOk())
