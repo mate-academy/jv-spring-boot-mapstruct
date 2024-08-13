@@ -9,8 +9,8 @@ import mate.academy.mapstruct.model.Group;
 import mate.academy.mapstruct.repository.group.GroupRepository;
 import org.springframework.stereotype.Service;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class GroupServiceImpl implements GroupService {
     private final GroupRepository groupRepository;
     private final GroupMapper groupMapper;
