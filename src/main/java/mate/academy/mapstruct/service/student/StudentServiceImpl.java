@@ -1,42 +1,37 @@
 package mate.academy.mapstruct.service.student;
 
 import java.util.List;
-import java.util.Random;
-import lombok.RequiredArgsConstructor;
 import mate.academy.mapstruct.dto.student.CreateStudentRequestDto;
 import mate.academy.mapstruct.dto.student.StudentDto;
-import mate.academy.mapstruct.dto.student.StudentWithoutSubjectsDto;
-import mate.academy.mapstruct.exception.EntityNotFoundException;
 import mate.academy.mapstruct.mapper.StudentMapper;
 import mate.academy.mapstruct.model.Student;
+import mate.academy.mapstruct.model.Subject;
 import mate.academy.mapstruct.repository.student.StudentRepository;
+import mate.academy.mapstruct.repository.subject.SubjectRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-@RequiredArgsConstructor
 @Service
 public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
+    private final SubjectRepository subjectRepository;
     private final StudentMapper studentMapper;
 
+    public StudentServiceImpl(StudentRepository studentRepository,
+                              SubjectRepository subjectRepository,
+                              StudentMapper studentMapper) {
+        this.studentRepository = studentRepository;
+        this.subjectRepository = subjectRepository;
+        this.studentMapper = studentMapper;
+    }
+
     @Override
+    @Transactional
     public StudentDto save(CreateStudentRequestDto requestDto) {
         Student student = studentMapper.toModel(requestDto);
-        student.setSocialSecurityNumber("abc " + new Random().nextInt(1000));
-        return studentMapper.toDto(studentRepository.save(student));
-    }
-
-    @Override
-    public List<StudentWithoutSubjectsDto> findAll() {
-        return studentRepository.findAll().stream()
-                .map(studentMapper::toStudentWithoutSubjectsDto)
-                .toList();
-    }
-
-    @Override
-    public StudentDto findById(Long id) {
-        Student student = studentRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("Can't find employee by id" + id)
-        );
+        List<Subject> subjects = subjectRepository.findAllById(requestDto.getSubjects());
+        student.setSubjects(subjects);
+        student = studentRepository.save(student);
         return studentMapper.toDto(student);
     }
 }
