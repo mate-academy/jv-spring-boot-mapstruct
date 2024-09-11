@@ -10,13 +10,15 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface StudentMapper {
     @Mapping(source = "group.id", target = "groupId")
-    @Mapping(source = "subjects.id", target = "subjectIds")
+    @Mapping(target = "subjectIds", expression = "java(student.getSubjects().stream().map(Subject::getId).collect(java.util.stream.Collectors.toList()))")
     StudentDto toDto(Student student);
 
     @Mapping(source = "group.id", target = "groupId")
     StudentWithoutSubjectsDto toStudentWithoutSubjectsDto(Student student);
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "socialSecurityNumber", ignore = true)
     @Mapping(target = "group.id", source = "groupId")
-    @Mapping(target = "subjects", ignore = true)
+    @Mapping(target = "subjects", ignore = true) // Assuming subjects will be set separately
     Student toModel(CreateStudentRequestDto requestDto);
 }
