@@ -34,4 +34,12 @@ public class StudentServiceImpl implements StudentService {
         student = studentRepository.save(student);
         return studentMapper.toDto(student);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public StudentDto findById(Long id) {
+        return studentRepository.findById(id)
+                .map(studentMapper::toDto)
+                .orElseThrow(() -> new RuntimeException("Student not found"));
+    }
 }
