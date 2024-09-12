@@ -17,7 +17,6 @@ public interface StudentMapper {
     @Mapping(source = "group.id", target = "groupId")
     @Mapping(source = "subjects", target = "subjectIds", qualifiedByName = "mapSubjectsToIds")
     @Mapping(target = "id", source = "id")
-    @Mapping(target = "socialSecurityNumber", source = "socialSecurityNumber")
     StudentDto toDto(Student student);
 
     @Mapping(source = "group.id", target = "groupId")
@@ -27,7 +26,6 @@ public interface StudentMapper {
     @Mapping(target = "group.id", source = "groupId")
     @Mapping(target = "subjects", ignore = true) // Assuming subjects will be set separately
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "socialSecurityNumber", ignore = true)
     Student toModel(CreateStudentRequestDto requestDto);
 
     @Named("mapSubjectsToIds")
