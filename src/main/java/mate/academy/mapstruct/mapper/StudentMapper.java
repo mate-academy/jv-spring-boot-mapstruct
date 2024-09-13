@@ -17,7 +17,6 @@ public interface StudentMapper {
     @Mapping(source = "group.id", target = "groupId")
     @Mapping(source = "subjects", target = "subjectIds", qualifiedByName = "mapSubjectsToIds")
     @Mapping(target = "id", source = "id")
-    @Mapping(target = "socialSecurityNumber", source = "socialSecurityNumber")
     StudentDto toDto(Student student);
 
     @Mapping(source = "group.id", target = "groupId")
