@@ -1,10 +1,9 @@
-package mate.academy.mapstruct.repository.group;
+package mate.academy.mapstruct.repository;
 
-import java.util.List;
 import mate.academy.mapstruct.model.Group;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface GroupRepository {
-    Group save(Group group);
-
-    List<Group> findAll();
+@Repository
+public interface GroupRepository extends JpaRepository<Group, Long> {
 }
