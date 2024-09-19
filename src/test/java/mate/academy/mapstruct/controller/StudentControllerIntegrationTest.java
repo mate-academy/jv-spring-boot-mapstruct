@@ -1,8 +1,8 @@
 package mate.academy.mapstruct.controller;
 
 import mate.academy.mapstruct.dto.student.CreateStudentRequestDto;
-import mate.academy.mapstruct.model.StudentGroup;
-import mate.academy.mapstruct.repository.StudentGroupRepository;
+import mate.academy.mapstruct.model.Group;
+import mate.academy.mapstruct.repository.GroupRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class StudentControllerIntegrationTest {
     private WebApplicationContext webApplicationContext;
 
     @Autowired
-    private StudentGroupRepository studentGroupRepository;
+    private GroupRepository groupRepository;
 
     private MockMvc mockMvc;
 
@@ -33,10 +33,10 @@ public class StudentControllerIntegrationTest {
     public void setup() {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         // Ensure the group with ID 2 exists
-        StudentGroup group = new StudentGroup();
+        Group group = new Group();
         group.setId(2L);
         group.setName("Group 2");
-        studentGroupRepository.save(group);
+        groupRepository.save(group);
     }
 
     @Test
