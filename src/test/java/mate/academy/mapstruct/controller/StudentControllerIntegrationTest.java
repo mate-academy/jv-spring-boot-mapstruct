@@ -9,6 +9,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.List;
+
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -25,11 +27,12 @@ public class StudentControllerIntegrationTest {
     public void testSave() throws Exception {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 
-        CreateStudentRequestDto requestDto = new CreateStudentRequestDto();
-        requestDto.setName("Bob Alison");
-        requestDto.setEmail("bob.alison@example.com");
-        requestDto.setGroupId(2L);
-        requestDto.setSubjects(List.of(2L, 3L));
+        CreateStudentRequestDto requestDto = new CreateStudentRequestDto(
+                "Bob Alison",
+                "bob.alison@example.com",
+                2L,
+                List.of(2L, 3L)
+        );
 
         mockMvc.perform(post("/students")
                 .contentType(MediaType.APPLICATION_JSON)
