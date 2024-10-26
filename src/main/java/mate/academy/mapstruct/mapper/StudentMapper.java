@@ -27,6 +27,7 @@ public interface StudentMapper {
         studentDto.setSubjectIds(subjects);
     }
 
+    @Mapping(source = "group.id", target = "groupId")
     StudentWithoutSubjectsDto toStudentWithoutSubjectsDto(Student student);
 
     @Mapping(target = "group", source = "groupId", qualifiedByName = "groupById")
@@ -36,7 +37,7 @@ public interface StudentMapper {
     Student toModel(CreateStudentRequestDto requestDto);
 
     @AfterMapping
-    default void setSubjects(CreateStudentRequestDto requestDto, @MappingTarget Student student) {
+    default void setSubjects(@MappingTarget Student student, CreateStudentRequestDto requestDto) {
         List<Subject> subjects = requestDto.subjects()
                 .stream()
                 .map(Subject::new)
