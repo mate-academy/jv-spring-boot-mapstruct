@@ -1,5 +1,6 @@
 package mate.academy.mapstruct.mapper;
 
+
 import mate.academy.mapstruct.config.MapperConfig;
 import mate.academy.mapstruct.dto.group.CreateGroupRequestDto;
 import mate.academy.mapstruct.dto.group.GroupDto;
