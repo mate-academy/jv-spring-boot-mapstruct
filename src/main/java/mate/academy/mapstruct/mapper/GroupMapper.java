@@ -1,12 +1,12 @@
 package mate.academy.mapstruct.mapper;
 
+import java.util.Optional;
 import mate.academy.mapstruct.config.MapperConfig;
 import mate.academy.mapstruct.dto.group.CreateGroupRequestDto;
 import mate.academy.mapstruct.dto.group.GroupDto;
 import mate.academy.mapstruct.model.Group;
 import org.mapstruct.Mapper;
 import org.mapstruct.Named;
-import java.util.Optional;
 
 @Mapper(config = MapperConfig.class)
 public interface GroupMapper {
@@ -15,7 +15,7 @@ public interface GroupMapper {
     Group toModel(CreateGroupRequestDto requestDto);
 
     @Named("groupById")
-    default Group groupById(Long id) {
+    default Group getGroupById(Long id) {
         return Optional.ofNullable(id)
                 .map(Group::new)
                 .orElse(null);

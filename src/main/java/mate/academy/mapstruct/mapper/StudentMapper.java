@@ -1,5 +1,7 @@
 package mate.academy.mapstruct.mapper;
 
+import java.util.Collections;
+import java.util.List;
 import mate.academy.mapstruct.config.MapperConfig;
 import mate.academy.mapstruct.dto.student.CreateStudentRequestDto;
 import mate.academy.mapstruct.dto.student.StudentDto;
@@ -12,10 +14,6 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.Named;
-
-import java.util.Collections;
-import java.util.List;
-
 
 @Mapper(config = MapperConfig.class, uses = GroupMapper.class)
 public interface StudentMapper {
@@ -53,5 +51,10 @@ public interface StudentMapper {
         } else {
             studentDto.setSubjectIds(Collections.emptyList());
         }
+    }
+
+    @Named("groupById")
+    default Long mapGroupToGroupId(Group group) {
+        return group != null ? group.getId() : null;
     }
 }
