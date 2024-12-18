@@ -51,6 +51,23 @@ public class StudentRepositoryImpl implements StudentRepository {
     }
 
     @Override
+    public Optional<Student> findByEmail(String email) {
+        try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
+            TypedQuery<Student> query = entityManager.createQuery(
+                    "SELECT s FROM Student s LEFT JOIN FETCH s.subjects WHERE s.email = :email",
+                    Student.class
+            );
+            query.setParameter("email", email);
+            try {
+                Student student = query.getSingleResult();
+                return Optional.of(student);
+            } catch (NoResultException ex) {
+                return Optional.empty();
+            }
+        }
+    }
+
+    @Override
     public List<Student> findAll() {
         try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
             return entityManager.createQuery("SELECT s FROM Student s", Student.class)

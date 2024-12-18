@@ -1,6 +1,7 @@
 package mate.academy.mapstruct.service.student;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import lombok.RequiredArgsConstructor;
 import mate.academy.mapstruct.dto.student.CreateStudentRequestDto;
@@ -9,19 +10,28 @@ import mate.academy.mapstruct.dto.student.StudentWithoutSubjectsDto;
 import mate.academy.mapstruct.exception.EntityNotFoundException;
 import mate.academy.mapstruct.mapper.StudentMapper;
 import mate.academy.mapstruct.model.Student;
+import mate.academy.mapstruct.repository.group.GroupRepository;
 import mate.academy.mapstruct.repository.student.StudentRepository;
+import mate.academy.mapstruct.repository.subject.SubjectRepository;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
 public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
+    private final GroupRepository groupRepository;
+    private final SubjectRepository subjectRepository;
     private final StudentMapper studentMapper;
 
     @Override
     public StudentDto save(CreateStudentRequestDto requestDto) {
         Student student = studentMapper.toModel(requestDto);
         student.setSocialSecurityNumber("abc " + new Random().nextInt(1000));
+
+        Optional<Student> optionalStudent = studentRepository.findByEmail(student.getEmail());
+        if (optionalStudent.isPresent()) {
+            student.setId(optionalStudent.get().getId());
+        }
         return studentMapper.toDto(studentRepository.save(student));
     }
 
