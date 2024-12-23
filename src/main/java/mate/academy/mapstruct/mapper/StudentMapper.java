@@ -32,7 +32,7 @@ public interface StudentMapper {
     @Mapping(target = "groupId", source = "group.id")
     StudentWithoutSubjectsDto toStudentWithoutSubjectsDto(Student student);
 
-    @Mapping(target = "group", source = "groupId", qualifiedByName = "getGroupById") // Метод из GroupMapper
+    @Mapping(target = "group", source = "groupId", qualifiedByName = "getGroupById")
     @Mapping(target = "subjects", source = "subjects", qualifiedByName = "getSubjectsByIds")
     Student toModel(CreateStudentRequestDto requestDto);
 
