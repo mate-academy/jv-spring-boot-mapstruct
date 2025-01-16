@@ -9,7 +9,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface SubjectMapper {
 
-    @Mapping(target = "id", ignore = true) // If you want to ignore the ID during creation
+    @Mapping(target = "id", source = "id") // Map the ID if needed
     SubjectDto toDto(Subject subject);
 
     Subject toModel(CreateSubjectRequestDto requestDto);
