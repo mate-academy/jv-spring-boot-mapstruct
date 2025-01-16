@@ -23,7 +23,7 @@ public interface StudentMapper {
     StudentWithoutSubjectsDto toStudentWithoutSubjectsDto(Student student);
 
     @Mapping(source = "groupId", target = "group.id")
-    @Mapping(source = "subjectIds", target = "subjects", qualifiedByName = "idsToSubjects")
+    @Mapping(source = "subjects", target = "subjects", qualifiedByName = "idsToSubjects")
     Student toModel(CreateStudentRequestDto requestDto);
 
     @Named("subjectsToIds")
