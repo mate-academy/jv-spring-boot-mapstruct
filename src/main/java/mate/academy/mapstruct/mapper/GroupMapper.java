@@ -9,7 +9,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface GroupMapper {
 
-    @Mapping(target = "id", ignore = true) // If you want to ignore the ID during creation
+    @Mapping(target = "id", source = "id") // Map the ID if needed
     GroupDto toDto(Group group);
 
     Group toModel(CreateGroupRequestDto requestDto);
