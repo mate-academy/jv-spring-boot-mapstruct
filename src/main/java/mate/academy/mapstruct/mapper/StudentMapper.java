@@ -11,17 +11,24 @@ import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
+import org.mapstruct.Mappings;
 
-@Mapper(config = MapperConfig.class, uses = GroupMapper.class)
+@Mapper(config = MapperConfig.class, uses = {GroupMapper.class, SubjectMapper.class})
 public interface StudentMapper {
-    @Mapping(source = "group.id", target = "groupId")
-    @Mapping(target = "subjectIds", ignore = true)
+    @Mappings({
+        @Mapping(target = "groupId", source = "group", qualifiedByName = "idByGroup"),
+        @Mapping(target = "subjectIds", source = "subjects", qualifiedByName = "idListBySubject")
+    })
     StudentDto toDto(Student student);
 
+    @Mapping(target = "groupId", source = "group", qualifiedByName = "idByGroup")
     StudentWithoutSubjectsDto toStudentWithoutSubjectsDto(Student student);
 
-    @Mapping(target = "group", source = "groupId", qualifiedByName = "groupById")
-    @Mapping(target = "subjects", ignore = true)
+    @Mappings({
+            @Mapping(target = "socialSecurityNumber", ignore = true),
+            @Mapping(target = "group", source = "groupId", qualifiedByName = "groupById"),
+            @Mapping(target = "subjects", source = "subjects", qualifiedByName = "subjectListByIds")
+    })
     Student toModel(CreateStudentRequestDto requestDto);
 
     @AfterMapping
