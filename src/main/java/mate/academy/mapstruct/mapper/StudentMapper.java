@@ -19,11 +19,12 @@ public interface StudentMapper {
     StudentDto toDto(Student student);
 
     @AfterMapping
-    default void setSubjectIds(@MappingTarget StudentDto studentDto, Student student) {
-        List<Long> subjectIds = student.getSubjects().stream()
+    default void setSubjectsIds(@MappingTarget StudentDto studentDto, Student student) {
+        List<Long> subjectsIdsList = student.getSubjects()
+                .stream()
                 .map(Subject::getId)
                 .toList();
-        studentDto.setSubjectIds(subjectIds);
+        studentDto.setSubjectIds(subjectsIdsList);
     }
 
     @Mapping(source = "group.id", target = "groupId")
@@ -34,10 +35,12 @@ public interface StudentMapper {
     Student toModel(CreateStudentRequestDto requestDto);
 
     @AfterMapping
-    default void setSkills(@MappingTarget Student student, CreateStudentRequestDto requestDto) {
-        List<Subject> subjects = requestDto.subjects().stream()
+    default void setSubjects(CreateStudentRequestDto requestDto, @MappingTarget Student student) {
+        List<Subject> studentSubjects =
+                requestDto.subjects()
+                        .stream()
                 .map(Subject::new)
                 .toList();
-        student.setSubjects(subjects);
+        student.setSubjects(studentSubjects);
     }
 }
