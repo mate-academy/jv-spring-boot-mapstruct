@@ -14,7 +14,9 @@ public interface GroupMapper {
 
     @Named("groupById")
     default Group mapGroupById(Long id) {
-        if (id == null) return null;
+        if (id == null) {
+            return null;
+        }
         Group group = new Group();
         group.setId(id);
         return group;
