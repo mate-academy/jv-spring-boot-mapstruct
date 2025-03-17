@@ -10,8 +10,8 @@ import mate.academy.mapstruct.model.Subject;
 import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
 import org.mapstruct.MappingTarget;
+import org.mapstruct.Mappings;
 
 @Mapper(config = MapperConfig.class, uses = {GroupMapper.class, SubjectMapper.class})
 public interface StudentMapper {
