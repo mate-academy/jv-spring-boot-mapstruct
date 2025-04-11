@@ -1,15 +1,15 @@
 package mate.academy.mapstruct.mapper;
 
+import java.util.Optional;
 import mate.academy.mapstruct.dto.group.CreateGroupRequestDto;
 import mate.academy.mapstruct.dto.group.GroupDto;
 import mate.academy.mapstruct.model.Group;
 import org.mapstruct.Mapper;
-import org.mapstruct.MapperConfig;
 import org.mapstruct.Named;
+import org.springframework.stereotype.Component;
 
-import java.util.Optional;
-
-@Mapper(config = MapperConfig.class)
+@Mapper(componentModel = "spring")
+@Component
 public interface GroupMapper {
     GroupDto toDto(Group group);
 
