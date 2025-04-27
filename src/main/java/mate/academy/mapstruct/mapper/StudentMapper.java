@@ -9,8 +9,13 @@ import mate.academy.mapstruct.model.Student;
 import mate.academy.mapstruct.model.Subject;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.NullValueCheckStrategy;
 
-@Mapper(componentModel = "spring")
+@Mapper (
+        componentModel = "spring",
+        nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS,
+        uses = {GroupMapper.class, StudentMapper.class}
+)
 public interface StudentMapper {
 
     @Mapping(source = "group.id", target = "groupId")
