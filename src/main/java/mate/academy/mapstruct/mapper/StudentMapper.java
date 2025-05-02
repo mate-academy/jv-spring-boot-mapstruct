@@ -44,7 +44,9 @@ public interface StudentMapper {
 
     @Named("mapSubjectIdsToSubjects")
     default List<Subject> mapSubjectIdsToSubjects(List<Long> ids) {
-        if (ids == null) return new ArrayList<>();
+        if (ids == null) {
+            return new ArrayList<>();
+        }
         return ids.stream().map(id -> {
             Subject subject = new Subject();
             subject.setId(id);
@@ -54,7 +56,9 @@ public interface StudentMapper {
 
     @Named("subjectToIds")
     default List<Long> subjectToIds(List<Subject> subjects) {
-        if (subjects == null) return new ArrayList<>();
+        if (subjects == null) {
+            return new ArrayList<>();
+        }
         return subjects.stream()
                 .map(Subject::getId)
                 .collect(Collectors.toList());
