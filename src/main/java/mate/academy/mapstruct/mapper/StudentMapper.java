@@ -20,9 +20,10 @@ import org.mapstruct.NullValueCheckStrategy;
 public interface StudentMapper {
 
     @Mapping(target = "groupId", source = "group.id")
-    @Mapping(target = "subjectsIds", source = "subjects",
-            qualifiedByName = "subjectsToIds")
+    @Mapping(target = "subjectIds", source = "subjects",
+            qualifiedByName = "subjectToIds")
     StudentDto toDto(Student student);
+
 
     @Mapping(target = "groupId", source = "group.id")
     StudentWithoutSubjectsDto toStudentWithoutSubjectsDto(Student student);
@@ -52,8 +53,8 @@ public interface StudentMapper {
         }).collect(Collectors.toList());
     }
 
-    @Named("subjectsToIds")
-    default List<Long> mapSubjectsToIds(List<Subject> subjects) {
+    @Named("subjectToIds")
+    default List<Long> subjectToIds(List<Subject> subjects) {
         if (subjects == null) return new ArrayList<>();
         return subjects.stream()
                 .map(Subject::getId)
