@@ -15,8 +15,8 @@ import org.mapstruct.Mappings;
 import org.mapstruct.Named;
 import org.mapstruct.NullValueCheckStrategy;
 
-@Mapper(componentModel = "spring", nullValueCheckStrategy
-        = NullValueCheckStrategy.ALWAYS)
+@Mapper(componentModel = "spring",
+        nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
 public interface StudentMapper {
 
     @Mapping(target = "groupId", source = "group.id")
@@ -24,14 +24,13 @@ public interface StudentMapper {
             qualifiedByName = "subjectToIds")
     StudentDto toDto(Student student);
 
-
     @Mapping(target = "groupId", source = "group.id")
     StudentWithoutSubjectsDto toStudentWithoutSubjectsDto(Student student);
 
     @Mappings({
             @Mapping(target = "group", source = "groupId",
                     qualifiedByName = "mapGroupIdToGroup"),
-            @Mapping(target = "subjects", source = "subjectIds",
+            @Mapping(target = "subjects", source = "subjects",
                     qualifiedByName = "mapSubjectIdsToSubjects")
     })
     Student toModel(CreateStudentRequestDto requestDto);
