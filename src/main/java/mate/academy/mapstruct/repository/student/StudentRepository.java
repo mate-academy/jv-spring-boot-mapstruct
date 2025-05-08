@@ -9,5 +9,7 @@ public interface StudentRepository {
 
     Optional<Student> findById(Long id);
 
+    Optional<Student> findByEmail(String email);
+
     List<Student> findAll();
 }
