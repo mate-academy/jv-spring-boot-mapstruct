@@ -53,7 +53,8 @@ public class StudentRepositoryImpl implements StudentRepository {
     @Override
     public List<Student> findAll() {
         try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
-            return entityManager.createQuery("SELECT s FROM Student s", Student.class)
+            return entityManager.createQuery("SELECT s FROM Student s "
+                            + "JOIN FETCH s.subjects", Student.class)
                     .getResultList();
         }
     }
