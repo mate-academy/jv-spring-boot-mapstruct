@@ -33,7 +33,8 @@ public class GroupRepositoryImpl implements GroupRepository {
     @Override
     public List<Group> findAll() {
         try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
-            return entityManager.createQuery("SELECT g FROM Group g", Group.class)
+            return entityManager.createQuery("SELECT g FROM Group g",
+                            Group.class)
                     .getResultList();
         }
     }
