@@ -35,7 +35,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public StudentDto findById(Long id) {
         Student student = studentRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("Can't find employee by id" + id)
+                () -> new EntityNotFoundException("Can't find student by id" + id)
         );
         return studentMapper.toDto(student);
     }
