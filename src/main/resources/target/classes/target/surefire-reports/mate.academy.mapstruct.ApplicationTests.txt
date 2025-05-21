@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: mate.academy.mapstruct.ApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.535 s - in mate.academy.mapstruct.ApplicationTests
