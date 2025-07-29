@@ -1,0 +1,108 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: DariaBakal
+      changes:
+        - createTable:
+            tableName: student_groups
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 2
+      author: DariaBakal
+      changes:
+        - createTable:
+            tableName: students
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: social_security_number
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: group_id
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_student_group
+                    referencedTableName: student_groups
+                    referencedColumnNames: id
+
+  - changeSet:
+      id: 3
+      author: DariaBakal
+      changes:
+        - createTable:
+            tableName: subjects
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 4
+      author: DariaBakal
+      changes:
+        - createTable:
+            tableName: student_subject
+            columns:
+              - column:
+                  name: student_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_student_subject_student
+                    referencedTableName: students
+                    referencedColumnNames: id
+              - column:
+                  name: subject_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_student_subject_subject
+                    referencedTableName: subjects
+                    referencedColumnNames: id
+        - addPrimaryKey:
+            tableName: student_subject
+            columnNames: student_id, subject_id
+            constraintName: pk_student_subject
