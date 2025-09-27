@@ -1,9 +1,11 @@
 # Implement Mappers
 
 ### Requirements
-In this repository, you will find an almost working application. The only task remaining is to **implement mappers** using the MapStruct library (all required imports are present in the `pom.xml` file).
+In this repository, you will find an almost working application. The only task remaining is to **implement mappers** using the MapStruct library 
+(all required imports are present in the `pom.xml` file).
 
-As a result of completing this task, you should have a fully functioning application. You should be able to send POST and GET requests to any available controller, and all existing tests should pass.
+As a result of completing this task, you should have a fully functioning application. You should be able to send POST and GET requests to any available controller, 
+and all existing tests should pass.
 
 #### !!! Important: Remember to provide your credentials in the `application.properties` file during testing. However, DO NOT PUSH THEM in the PR.
 
