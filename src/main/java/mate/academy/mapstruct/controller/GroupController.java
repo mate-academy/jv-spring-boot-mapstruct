@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import mate.academy.mapstruct.dto.group.CreateGroupRequestDto;
 import mate.academy.mapstruct.dto.group.GroupDto;
 import mate.academy.mapstruct.service.group.GroupService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
