@@ -14,6 +14,13 @@ public interface SubjectMapper {
 
     Subject toModel(CreateSubjectRequestDto requestDto);
 
+    @Named("subjectToId")
+    default Long subjectToId(Subject subject) {
+        return Optional.ofNullable(subject)
+                .map(Subject::getId)
+                .orElse(null);
+    }
+
     @Named("subjectById")
     default Subject subjectById(Long id) {
         return Optional.ofNullable(id)

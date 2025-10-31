@@ -12,13 +12,14 @@ import org.mapstruct.Mapping;
         {GroupMapper.class, SubjectMapper.class})
 public interface StudentMapper {
     @Mapping(source = "group.id", target = "groupId")
-    @Mapping(target = "subjectIds", ignore = true)
+    @Mapping(target = "subjectIds", source = "subjects", qualifiedByName = "subjectToId")
     StudentDto toDto(Student student);
 
+    @Mapping(target = "groupId", source = "group.id")
     StudentWithoutSubjectsDto toStudentWithoutSubjectsDto(Student student);
 
     @Mapping(target = "group", source = "groupId", qualifiedByName = "groupById")
-    @Mapping(target = "subjects", ignore = true)
+    @Mapping(target = "subjects", source = "subjects", qualifiedByName = "subjectById")
     @Mapping(target = "socialSecurityNumber", ignore = true)
     @Mapping(target = "id", ignore = true)
     Student toModel(CreateStudentRequestDto requestDto);
