@@ -5,10 +5,9 @@ import mate.academy.mapstruct.dto.group.CreateGroupRequestDto;
 import mate.academy.mapstruct.dto.group.GroupDto;
 import mate.academy.mapstruct.model.Group;
 import org.mapstruct.Mapper;
-import org.mapstruct.MapperConfig;
 import org.mapstruct.Named;
 
-@Mapper(config = MapperConfig.class)
+@Mapper(config = MainMapperConfig.class)
 public interface GroupMapper {
     GroupDto toDto(Group group);
 
