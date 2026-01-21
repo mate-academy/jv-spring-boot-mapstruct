@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/subjects")
 public class SubjectController {
-
     private final SubjectService subjectService;
 
     @GetMapping
