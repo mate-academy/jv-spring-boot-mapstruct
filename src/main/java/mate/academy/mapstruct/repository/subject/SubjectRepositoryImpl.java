@@ -10,10 +10,9 @@ import org.springframework.stereotype.Repository;
 
 @RequiredArgsConstructor
 @Repository
-public class SubjectRepositoryImpl implements SubjectRepository {
+public class SubjectRepositoryImpl {
     private final EntityManagerFactory entityManagerFactory;
 
-    @Override
     public Subject save(Subject subject) {
         EntityTransaction transaction = null;
         try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
@@ -30,7 +29,6 @@ public class SubjectRepositoryImpl implements SubjectRepository {
         }
     }
 
-    @Override
     public List<Subject> findAll() {
         try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
             return entityManager.createQuery("SELECT s FROM Subject s", Subject.class)

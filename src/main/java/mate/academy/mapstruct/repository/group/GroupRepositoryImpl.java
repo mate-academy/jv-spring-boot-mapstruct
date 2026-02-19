@@ -10,10 +10,9 @@ import org.springframework.stereotype.Repository;
 
 @RequiredArgsConstructor
 @Repository
-public class GroupRepositoryImpl implements GroupRepository {
+public class GroupRepositoryImpl {
     private final EntityManagerFactory entityManagerFactory;
 
-    @Override
     public Group save(Group group) {
         EntityTransaction transaction = null;
         try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
@@ -30,7 +29,6 @@ public class GroupRepositoryImpl implements GroupRepository {
         }
     }
 
-    @Override
     public List<Group> findAll() {
         try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
             return entityManager.createQuery("SELECT g FROM Group g", Group.class)
