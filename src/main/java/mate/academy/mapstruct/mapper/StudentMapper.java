@@ -14,7 +14,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.Named;
 
-@Mapper(config = MapperConfig.class)
+@Mapper(config = MapperConfig.class, uses = {GroupMapper.class, SubjectMapper.class})
 public interface StudentMapper {
 
     @Mapping(source = "group.id", target = "groupId")
@@ -30,6 +30,7 @@ public interface StudentMapper {
         studentDto.setSubjectIds(subjectsIds);
     }
 
+    @Mapping(source = "group.id", target = "groupId")
     StudentWithoutSubjectsDto toStudentWithoutSubjectsDto(Student student);
 
     @Mapping(target = "group", source = "groupId", qualifiedByName = "groupById")
