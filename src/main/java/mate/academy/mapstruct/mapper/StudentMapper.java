@@ -1,5 +1,6 @@
 package mate.academy.mapstruct.mapper;
 
+import java.util.List;
 import mate.academy.mapstruct.config.MapperConfig;
 import mate.academy.mapstruct.dto.student.CreateStudentRequestDto;
 import mate.academy.mapstruct.dto.student.StudentDto;
@@ -7,7 +8,6 @@ import mate.academy.mapstruct.dto.student.StudentWithoutSubjectsDto;
 import mate.academy.mapstruct.model.Group;
 import mate.academy.mapstruct.model.Student;
 import mate.academy.mapstruct.model.Subject;
-import java.util.List;
 import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
