@@ -33,6 +33,7 @@ public interface StudentMapper {
     StudentWithoutSubjectsDto toStudentWithoutSubjectsDto(Student student);
 
     @Mapping(target = "group", source = "groupId", qualifiedByName = "groupById")
+    @Mapping(target = "subjects", ignore = true)
     Student toModel(CreateStudentRequestDto requestDto);
 
     @AfterMapping
