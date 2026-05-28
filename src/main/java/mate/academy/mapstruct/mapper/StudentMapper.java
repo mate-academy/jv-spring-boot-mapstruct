@@ -7,7 +7,6 @@ import mate.academy.mapstruct.dto.student.StudentWithoutSubjectsDto;
 import mate.academy.mapstruct.model.Group;
 import mate.academy.mapstruct.model.Student;
 import mate.academy.mapstruct.model.Subject;
-import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
