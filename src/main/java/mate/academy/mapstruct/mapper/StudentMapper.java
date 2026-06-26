@@ -20,7 +20,7 @@ public interface StudentMapper {
     StudentWithoutSubjectsDto toStudentWithoutSubjectsDto(Student student);
 
     @Mapping(source = "groupId", target = "group.id")
-    @Mapping(source = "subjectIds", target = "subjects", qualifiedByName = "mapIdsToSubjects")
+    @Mapping(source = "subjects", target = "subjects", qualifiedByName = "mapIdsToSubjects")
     Student toModel(CreateStudentRequestDto requestDto);
 
     @Named("mapSubjectsToIds")
@@ -32,6 +32,7 @@ public interface StudentMapper {
                 .map(Subject::getId)
                 .toList();
     }
+
     @Named("mapIdsToSubjects")
     default List<Subject> mapIdsToSubjects(List<Long> subjectIds) {
         if (subjectIds == null) {
