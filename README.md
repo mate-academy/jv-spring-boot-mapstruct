@@ -25,4 +25,4 @@ Additionally, a student can study several subjects:
             inverseJoinColumns = @JoinColumn(name = "subject_id")
     )
     private List<Subject> subjects;
-```
+``` 
