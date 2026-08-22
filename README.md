@@ -1,5 +1,7 @@
 # Implement Mappers
 
+`mvn clean package`
+
 ### Requirements
 In this repository, you will find an almost working application. The only task remaining is to **implement mappers** using the MapStruct library (all required imports are present in the `pom.xml` file).
 
