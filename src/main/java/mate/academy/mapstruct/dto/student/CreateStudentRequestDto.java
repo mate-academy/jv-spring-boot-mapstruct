@@ -6,6 +6,6 @@ public record CreateStudentRequestDto(
         String name,
         String email,
         Long groupId,
-        List<Long> subjects
+        List<Long> subjectsIds
 ) {
 }
