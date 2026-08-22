@@ -26,5 +26,6 @@ public class GroupController {
     @PostMapping
     public GroupDto save(@RequestBody CreateGroupRequestDto requestDto) {
         return groupService.save(requestDto);
+
     }
 }
