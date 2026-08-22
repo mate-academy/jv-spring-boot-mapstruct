@@ -21,4 +21,8 @@ public class Subject {
     public Subject(Long id) {
         this.id = id;
     }
+
+    public Long getId() {
+        return id;
+    }
 }
