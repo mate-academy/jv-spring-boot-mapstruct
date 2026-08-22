@@ -7,5 +7,7 @@ import mate.academy.mapstruct.dto.group.GroupDto;
 public interface GroupService {
     GroupDto save(CreateGroupRequestDto requestDto);
 
+    GroupDto findById(Long id);
+
     List<GroupDto> findAll();
 }
