@@ -9,18 +9,25 @@ import mate.academy.mapstruct.dto.student.StudentWithoutSubjectsDto;
 import mate.academy.mapstruct.exception.EntityNotFoundException;
 import mate.academy.mapstruct.mapper.StudentMapper;
 import mate.academy.mapstruct.model.Student;
+import mate.academy.mapstruct.repository.group.GroupRepository;
 import mate.academy.mapstruct.repository.student.StudentRepository;
+import mate.academy.mapstruct.repository.subject.SubjectRepository;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
 public class StudentServiceImpl implements StudentService {
+
     private final StudentRepository studentRepository;
     private final StudentMapper studentMapper;
+    private final GroupRepository groupRepository;
+    private final SubjectRepository subjectRepository;
 
     @Override
     public StudentDto save(CreateStudentRequestDto requestDto) {
         Student student = studentMapper.toModel(requestDto);
+        student.setGroup(groupRepository.findById(requestDto.groupId()));
+        student.setSubjects(subjectRepository.findAll());
         student.setSocialSecurityNumber("abc " + new Random().nextInt(1000));
         return studentMapper.toDto(studentRepository.save(student));
     }

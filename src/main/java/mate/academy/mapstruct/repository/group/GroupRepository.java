@@ -7,4 +7,6 @@ public interface GroupRepository {
     Group save(Group group);
 
     List<Group> findAll();
+
+    Group findById(Long id);
 }
