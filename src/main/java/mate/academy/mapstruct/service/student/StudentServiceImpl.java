@@ -21,6 +21,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public StudentDto save(CreateStudentRequestDto requestDto) {
         Student student = studentMapper.toModel(requestDto);
+        System.out.println("Group id:" + student.getGroup().getId());
         student.setSocialSecurityNumber("abc " + new Random().nextInt(1000));
         return studentMapper.toDto(studentRepository.save(student));
     }
