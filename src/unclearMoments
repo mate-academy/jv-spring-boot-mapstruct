@@ -1,0 +1,6 @@
+1) Why there exist three DTO for Student?
+- Why I need create RequestDto?
+
+
+- Why is the class 'record' being used here as a DTO
+todo Answer: - мейт рекомендує використовувати record класи там де це є можливим.
