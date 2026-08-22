@@ -37,7 +37,7 @@ public class StudentRepositoryImpl implements StudentRepository {
     public Optional<Student> findById(Long id) {
         try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
             TypedQuery<Student> query = entityManager.createQuery(
-                    "SELECT s FROM Student s LEFT JOIN FETCH s.subjects WHERE s.id = :id",
+                    "SELECT s FROM Student s JOIN FETCH s.subjects WHERE s.id = :id",
                     Student.class
             );
             query.setParameter("id", id);
@@ -53,7 +53,8 @@ public class StudentRepositoryImpl implements StudentRepository {
     @Override
     public List<Student> findAll() {
         try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
-            return entityManager.createQuery("SELECT s FROM Student s", Student.class)
+            return entityManager.createQuery("SELECT s FROM Student s "
+                            + "JOIN FETCH s.subjects", Student.class)
                     .getResultList();
         }
     }
