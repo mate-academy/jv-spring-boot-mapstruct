@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Service
 public class GroupServiceImpl implements GroupService {
+
     private final GroupRepository groupRepository;
     private final GroupMapper groupMapper;
 
