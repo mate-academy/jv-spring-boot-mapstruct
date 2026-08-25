@@ -97,7 +97,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <configLocation>${maven.checkstyle.plugin.configLocation}</configLocation>
+                    <configLocation>config/checkstyle.xml</configLocation>
                     <includeResources>false</includeResources>
                     <excludeGeneratedSources>true</excludeGeneratedSources>
                     <consoleOutput>true</consoleOutput>
