@@ -7,13 +7,12 @@ import mate.academy.mapstruct.dto.student.StudentWithoutSubjectsDto;
 import mate.academy.mapstruct.mapper.config.MapperConfig;
 import mate.academy.mapstruct.model.Student;
 import mate.academy.mapstruct.model.Subject;
-import org.aspectj.lang.annotation.After;
 import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
-@Mapper(config = MapperConfig.class)
+@Mapper(config = MapperConfig.class, uses = GroupMapper.class)
 public interface StudentMapper {
 
     @Mapping(target = "groupId", source = "group.id")
@@ -29,14 +28,14 @@ public interface StudentMapper {
                     .stream()
                     .map(Subject::getId)
                     .toList();
-        studentDto.setSubjectIds(studentIds);
+            studentDto.setSubjectIds(studentIds);
         }
     }
 
     @Mapping(target = "groupId", source = "group.id")
     StudentWithoutSubjectsDto toStudentWithoutSubjectsDto(Student student);
 
-    @Mapping(target = "groupId", source = "group.id")
+    @Mapping(target = "group", source = "groupId", qualifiedByName = "groupById")
     @Mapping(target = "subjects", ignore = true)
     Student toModel(CreateStudentRequestDto requestDto);
 
