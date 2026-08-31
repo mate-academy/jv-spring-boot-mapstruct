@@ -37,4 +37,14 @@ public class SubjectRepositoryImpl implements SubjectRepository {
                     .getResultList();
         }
     }
+
+    @Override
+    public List<Subject> findAllById(List<Long> ids) {
+        try (EntityManager entityManager = entityManagerFactory.createEntityManager()) {
+            return entityManager.createQuery(
+                            "SELECT s FROM Subject s WHERE s.id IN :ids", Subject.class)
+                    .setParameter("ids", ids)
+                    .getResultList();
+        }
+    }
 }
