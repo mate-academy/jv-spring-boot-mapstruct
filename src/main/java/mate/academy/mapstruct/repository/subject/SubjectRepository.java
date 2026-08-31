@@ -7,4 +7,6 @@ public interface SubjectRepository {
     Subject save(Subject subject);
 
     List<Subject> findAll();
+
+    List<Subject> findAllById(List<Long> ids);
 }
