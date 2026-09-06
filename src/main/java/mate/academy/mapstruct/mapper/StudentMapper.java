@@ -13,7 +13,7 @@ import org.mapstruct.Mapping;
 public interface StudentMapper {
 
     @Mapping(source = "group.id", target = "groupId")
-    @Mapping(source = "subjects", target = "subgectIds")
+    @Mapping(source = "subjects", target = "subjectIds")
     StudentDto toDto(Student student);
 
     @Mapping(source = "group.id", target = "groupId")
