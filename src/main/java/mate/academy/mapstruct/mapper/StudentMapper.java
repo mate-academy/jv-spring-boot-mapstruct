@@ -8,13 +8,14 @@ import mate.academy.mapstruct.model.Student;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(config = StudentMapperConfig.class, uses = SubjectMapper.class)
+@Mapper(config = StudentMapperConfig.class, uses = {SubjectMapper.class, GroupMapper.class})
 public interface StudentMapper {
     StudentDto toDto(Student student);
 
     StudentWithoutSubjectsDto toStudentWithoutSubjectsDto(Student student);
 
     @Mapping(target = "subjects", source = "subjects", qualifiedByName = "addSubjects")
+    @Mapping(target = "group", source = "groupId", qualifiedByName = "groupById")
     Student toModel(CreateStudentRequestDto requestDto);
 
 }
