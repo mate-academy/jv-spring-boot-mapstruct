@@ -10,8 +10,11 @@ import org.mapstruct.Mapping;
 
 @Mapper(config = StudentMapperConfig.class, uses = {SubjectMapper.class, GroupMapper.class})
 public interface StudentMapper {
+    @Mapping(source = "group.id", target = "groupId")
+    @Mapping(source = "subjects", target = "subjectIds", qualifiedByName = "subjectsToIds")
     StudentDto toDto(Student student);
 
+    @Mapping(source = "group.id", target = "groupId")
     StudentWithoutSubjectsDto toStudentWithoutSubjectsDto(Student student);
 
     @Mapping(target = "subjects", source = "subjects", qualifiedByName = "addSubjects")

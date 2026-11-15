@@ -23,4 +23,14 @@ public interface SubjectMapper {
                 .map(Subject::new)
                 .toList();
     }
+
+    @Named("subjectsToIds")
+    default List<Long> subjectsToIds(List<Subject> subjects) {
+        if (subjects == null) {
+            return null;
+        }
+        return subjects.stream()
+                .map(Subject::getId)
+                .toList();
+    }
 }
