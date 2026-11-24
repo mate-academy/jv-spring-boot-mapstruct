@@ -4,7 +4,6 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.academy.mapstruct.dto.subject.CreateSubjectRequestDto;
 import mate.academy.mapstruct.dto.subject.SubjectDto;
-import mate.academy.mapstruct.mapper.SubjectMapper;
 import mate.academy.mapstruct.model.Subject;
 import mate.academy.mapstruct.repository.subject.SubjectRepository;
 import org.springframework.stereotype.Service;
